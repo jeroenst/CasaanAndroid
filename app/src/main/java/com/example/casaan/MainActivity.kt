@@ -1,5 +1,6 @@
 package com.example.casaan
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -16,14 +17,17 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.casaan.ui.dashboard.DashboardFragment
 import org.w3c.dom.Text
 import java.io.FileReader
 
-class MainActivity : AppCompatActivity()  {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private var gardenscene = "";
-    private var livingroomscene = "";
+    var testtext = "testing123..."
+
+    private var gardenscene = ""
+    private var livingroomscene = ""
 
     val mqttClient by lazy {
         MqttClientHelper(this)
@@ -53,8 +57,7 @@ class MainActivity : AppCompatActivity()  {
         mqttClient.connect()
     }
 
-    fun getIntance()
-    {
+    fun getIntance() {
         return this.getIntance()
     }
 
@@ -73,22 +76,25 @@ class MainActivity : AppCompatActivity()  {
                 mqttClient.subscribe("home/scene/garden")
                 mqttClient.subscribe("home/ESP_SMARTMETER/electricity/watt")
             }
+
             override fun connectionLost(throwable: Throwable) {
                 val snackbarMsg = "Connection to host lost:\n'$MQTT_MQTT_HOST'"
                 android.util.Log.w("Debug", snackbarMsg)
             }
+
             @Throws(Exception::class)
             override fun messageArrived(topic: String, mqttMessage: MqttMessage) {
-                android.util.Log.w("Debug", "Message received from host '$MQTT_MQTT_HOST': $topic = $mqttMessage")
+                android.util.Log.w(
+                    "Debug",
+                    "Message received from host '$MQTT_MQTT_HOST': $topic = $mqttMessage"
+                )
 
                 var mm = mqttMessage.toString()
                 val offcolor = 0xFF999999.toInt()
                 val oncolor = 0xFF00FF00.toInt()
 
-
-                if (topic == "home/scene/garden")
-                {
-                    gardenscene = mm;
+                if (topic == "home/scene/garden") {
+                    gardenscene = mm
                     var gardenoncolor = offcolor
                     var gardenfencecolor = offcolor
                     var gardenoffcolor = offcolor
@@ -96,13 +102,14 @@ class MainActivity : AppCompatActivity()  {
                     if (mm == "fenceon") gardenfencecolor = oncolor
                     if (mm == "off") gardenoffcolor = oncolor
 
-                    findViewById<View>(R.id.buttonGardenOn).setBackgroundColor(gardenoncolor)
-                    findViewById<View>(R.id.buttonGardenFence).setBackgroundColor(gardenfencecolor)
-                    findViewById<View>(R.id.buttonGardenOff).setBackgroundColor(gardenoffcolor)
+                    findViewById<View>(R.id.buttonGardenOn)?.setBackgroundColor(gardenoncolor)
+                    findViewById<View>(R.id.buttonGardenFence)?.setBackgroundColor(
+                        gardenfencecolor
+                    )
+                    findViewById<View>(R.id.buttonGardenOff)?.setBackgroundColor(gardenoffcolor)
                 }
 
-                if (topic == "home/scene/livingroom")
-                {
+                if (topic == "home/scene/livingroom") {
                     livingroomscene = mm
                     var livingroomeveningcolor = offcolor
                     var livingroomtvcolor = offcolor
@@ -113,34 +120,24 @@ class MainActivity : AppCompatActivity()  {
                     if (mm == "bright") livingroombrightcolor = oncolor
                     if (mm == "off") livingroomoffcolor = oncolor
 
-                    findViewById<View>(R.id.buttonEvening).setBackgroundColor(livingroomeveningcolor)
-                    findViewById<View>(R.id.buttonTV).setBackgroundColor(livingroomtvcolor)
-                    findViewById<View>(R.id.buttonBright).setBackgroundColor(livingroombrightcolor)
-                    findViewById<View>(R.id.buttonOff).setBackgroundColor(livingroomoffcolor)
+                    findViewById<View>(R.id.buttonEvening)?.setBackgroundColor(
+                        livingroomeveningcolor
+                    )
+                    findViewById<View>(R.id.buttonTV)?.setBackgroundColor(livingroomtvcolor)
+                    findViewById<View>(R.id.buttonBright)?.setBackgroundColor(
+                        livingroombrightcolor
+                    )
+                    findViewById<View>(R.id.buttonOff)?.setBackgroundColor(livingroomoffcolor)
                 }
 
-                if ((livingroomscene == "off") && (gardenscene == "off"))
-                {
-                    findViewById<View>(R.id.buttonAllOff).setBackgroundColor(oncolor)
-                }
-                else
-                {
-                    findViewById<View>(R.id.buttonAllOff).setBackgroundColor(offcolor)
+                if ((livingroomscene == "off") && (gardenscene == "off")) {
+                    findViewById<View>(R.id.buttonAllOff)?.setBackgroundColor(oncolor)
+                } else {
+                    findViewById<View>(R.id.buttonAllOff)?.setBackgroundColor(offcolor)
                 }
 
-
-                if (topic == "home/ESP_SMARTMETER/electricity/watt")
-                {
-                    val txt = findViewById<TextView>(R.id.text_notifications)
-                    try
-                    {
-                        txt.setText("test")
-                    }
-                    catch (e : Exception )
-                    {
-                        android.util.Log.w("debug", e.toString())
-                    }
-
+                if (topic == "home/ESP_SMARTMETER/electricity/watt") {
+                    findViewById<TextView>(R.id.textView5)?.text = mm + "W"
                 }
 
             }
