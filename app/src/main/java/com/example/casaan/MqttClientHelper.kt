@@ -8,9 +8,9 @@ import android.util.Log
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.*
 
-const val MQTT_CLIENT_USER_NAME = "user"
-const val MQTT_CLIENT_PASSWORD = "pass"
-const val MQTT_MQTT_HOST = "ssl://server:8883"
+var MQTT_CLIENT_USER_NAME = if (MQTT_OWN_CLIENT_USER_NAME == null)  {"user" } else { MQTT_OWN_CLIENT_USER_NAME }
+var MQTT_CLIENT_PASSWORD = if (MQTT_OWN_CLIENT_PASSWORD == null)  {"pass" } else { MQTT_OWN_CLIENT_PASSWORD }
+var MQTT_MQTT_HOST = if (MQTT_OWN_MQTT_HOST == null)  {"ssl://server:8883" } else { MQTT_OWN_MQTT_HOST }
 
 // Other options
 const val MQTT_CONNECTION_TIMEOUT = 3
