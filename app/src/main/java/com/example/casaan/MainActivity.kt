@@ -13,17 +13,21 @@ import com.example.casaan.ui.home.HomeFragment
 import org.eclipse.paho.client.mqttv3.*
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import org.w3c.dom.Text
 import java.io.FileReader
 
-class MainActivity : AppCompatActivity()  {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var gardenscene = "";
     private var livingroomscene = "";
+
+    val activityViewModel by viewModels<MainViewModel>()
 
     val mqttClient by lazy {
         MqttClientHelper(this)
@@ -48,13 +52,11 @@ class MainActivity : AppCompatActivity()  {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-
         setMqttCallBack()
         mqttClient.connect()
     }
 
-    fun getIntance()
-    {
+    fun getIntance() {
         return this.getIntance()
     }
 
@@ -73,21 +75,25 @@ class MainActivity : AppCompatActivity()  {
                 mqttClient.subscribe("home/scene/garden")
                 mqttClient.subscribe("home/ESP_SMARTMETER/electricity/watt")
             }
+
             override fun connectionLost(throwable: Throwable) {
                 val snackbarMsg = "Connection to host lost:\n'$MQTT_MQTT_HOST'"
                 android.util.Log.w("Debug", snackbarMsg)
             }
+
             @Throws(Exception::class)
             override fun messageArrived(topic: String, mqttMessage: MqttMessage) {
-                android.util.Log.w("Debug", "Message received from host '$MQTT_MQTT_HOST': $topic = $mqttMessage")
+                android.util.Log.w(
+                    "Debug",
+                    "Message received from host '$MQTT_MQTT_HOST': $topic = $mqttMessage"
+                )
 
                 var mm = mqttMessage.toString()
                 val offcolor = 0xFF999999.toInt()
                 val oncolor = 0xFF00FF00.toInt()
 
 
-                if (topic == "home/scene/garden")
-                {
+                if (topic == "home/scene/garden") {
                     gardenscene = mm;
                     var gardenoncolor = offcolor
                     var gardenfencecolor = offcolor
@@ -101,8 +107,7 @@ class MainActivity : AppCompatActivity()  {
                     findViewById<View>(R.id.buttonGardenOff).setBackgroundColor(gardenoffcolor)
                 }
 
-                if (topic == "home/scene/livingroom")
-                {
+                if (topic == "home/scene/livingroom") {
                     livingroomscene = mm
                     var livingroomeveningcolor = offcolor
                     var livingroomtvcolor = offcolor
@@ -119,30 +124,17 @@ class MainActivity : AppCompatActivity()  {
                     findViewById<View>(R.id.buttonOff).setBackgroundColor(livingroomoffcolor)
                 }
 
-                if ((livingroomscene == "off") && (gardenscene == "off"))
-                {
+                if ((livingroomscene == "off") && (gardenscene == "off")) {
                     findViewById<View>(R.id.buttonAllOff).setBackgroundColor(oncolor)
-                }
-                else
-                {
+                } else {
                     findViewById<View>(R.id.buttonAllOff).setBackgroundColor(offcolor)
                 }
 
 
-                if (topic == "home/ESP_SMARTMETER/electricity/watt")
-                {
+                if (topic == "home/ESP_SMARTMETER/electricity/watt") {
                     val txt = findViewById<TextView>(R.id.text_notifications)
-                    try
-                    {
-                        txt.setText("test")
-                    }
-                    catch (e : Exception )
-                    {
-                        android.util.Log.w("debug", e.toString())
-                    }
-
+                    activityViewModel.setNotificationMessage("test")
                 }
-
             }
 
             override fun deliveryComplete(iMqttDeliveryToken: IMqttDeliveryToken) {

@@ -1,0 +1,4 @@
+#Wed Jun 23 14:38:23 PST 2021
+base.0=/Users/rhexgomez/Projects/Scratch/CasaanAndroid/app/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

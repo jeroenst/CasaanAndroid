@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/rhexgomez/Projects/Scratch/CasaanAndroid/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_home.xml",
+        "source": "/Users/rhexgomez/Projects/Scratch/CasaanAndroid/app/src/main/res/layout/fragment_home.xml"
+    },
+    {
+        "merged": "/Users/rhexgomez/Projects/Scratch/CasaanAndroid/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml",
+        "source": "/Users/rhexgomez/Projects/Scratch/CasaanAndroid/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/rhexgomez/Projects/Scratch/CasaanAndroid/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_notifications.xml",
+        "source": "/Users/rhexgomez/Projects/Scratch/CasaanAndroid/app/src/main/res/layout/fragment_notifications.xml"
+    },
+    {
+        "merged": "/Users/rhexgomez/Projects/Scratch/CasaanAndroid/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_dashboard.xml",
+        "source": "/Users/rhexgomez/Projects/Scratch/CasaanAndroid/app/src/main/res/layout/fragment_dashboard.xml"
+    }
+]

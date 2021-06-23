@@ -1,0 +1,10 @@
+com/example/casaan/databinding/FragmentNotificationsBinding.java
+ com.example.casaan.databinding.FragmentNotificationsBinding
+com/example/casaan/databinding/ActivityMainBinding.java
+ com.example.casaan.databinding.ActivityMainBinding
+com/example/casaan/databinding/FragmentDashboardBinding.java
+ com.example.casaan.databinding.FragmentDashboardBinding
+com/example/casaan/databinding/FragmentHomeBinding.java
+ com.example.casaan.databinding.FragmentHomeBinding
+com/example/casaan/BuildConfig.java
+ com.example.casaan.BuildConfig
