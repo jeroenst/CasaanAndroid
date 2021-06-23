@@ -132,7 +132,6 @@ class MainActivity : AppCompatActivity() {
 
 
                 if (topic == "home/ESP_SMARTMETER/electricity/watt") {
-                    val txt = findViewById<TextView>(R.id.text_notifications)
                     activityViewModel.setNotificationMessage("test")
                 }
             }
