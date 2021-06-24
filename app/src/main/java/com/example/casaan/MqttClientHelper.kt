@@ -28,6 +28,7 @@ class MqttClientHelper(context: Context?) {
     val serverUri = MQTT_MQTT_HOST
     private val clientId: String = MqttClient.generateClientId()
 
+
     fun setCallback(callback: MqttCallbackExtended?) {
         mqttAndroidClient.setCallback(callback)
     }

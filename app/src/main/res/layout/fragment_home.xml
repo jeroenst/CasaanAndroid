@@ -11,11 +11,10 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Avond"
-        app:layout_constraintBottom_toTopOf="@id/buttonTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2" />
+        app:layout_constraintTop_toBottomOf="@id/buttonTV" />
 
     <Button
         android:id="@+id/buttonTV"
@@ -23,8 +22,19 @@
         android:layout_height="wrap_content"
         android:text="TV"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEvening" />
+        app:layout_constraintTop_toBottomOf="@id/textViewHuiskamer" />
+
+    <Button
+        android:id="@+id/buttonDinner"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Eten"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonEvening" />
 
     <Button
         android:id="@+id/buttonOff"
@@ -42,7 +52,7 @@
         android:text="Fel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonTV" />
+        app:layout_constraintTop_toBottomOf="@id/buttonDinner" />
 
     <Button
         android:id="@+id/buttonGardenOn"
@@ -51,7 +61,7 @@
         android:text="Aan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
+        app:layout_constraintTop_toBottomOf="@id/textViewTuin" />
 
     <Button
         android:id="@+id/buttonGardenFence"
@@ -78,10 +88,10 @@
         android:text="Alles Uit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView3" />
+        app:layout_constraintTop_toBottomOf="@id/textViewAlles" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewTuin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -93,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonOff" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewAlles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -105,7 +115,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonGardenOff" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewHuiskamer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Huiskamer"

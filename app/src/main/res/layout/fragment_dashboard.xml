@@ -8,7 +8,7 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
 
             <TextView
@@ -30,11 +30,12 @@
                 android:text="Electriciteitsverbruik" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textViewPowermeterWatt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
+                android:gravity="right"
                 android:text="-" />
         </TableRow>
 
@@ -54,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
+                android:gravity="right"
                 android:text="-" />
         </TableRow>
 
@@ -68,11 +70,12 @@
                 android:text="Zonnepanelen" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textViewSolarPanelsWatt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
+                android:gravity="right"
                 android:text="-" />
         </TableRow>
 
@@ -88,26 +91,34 @@
                 android:text="Airco" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/textViewAircoWatt"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
+                android:gravity="right"
                 android:text="-" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TV" />
+
+            <TextView
+                android:id="@+id/textViewTVWatt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="right"
+                android:text="-" />
+        </TableRow>
     </TableLayout>
 
-    <Button
-        android:id="@+id/button44"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="86dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
