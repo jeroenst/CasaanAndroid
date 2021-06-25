@@ -41,7 +41,7 @@ class MqttClientHelper(context: Context?) {
                 Log.w(TAG, "Mqtt Connected")
             }
 
-            override fun connectionLost(throwable: Throwable)
+            override fun connectionLost(throwable: Throwable?)
             {
                 Log.w(TAG, "Mqtt Connection Lost")
             }
@@ -139,6 +139,10 @@ class MqttClientHelper(context: Context?) {
 
     fun isConnected() : Boolean {
         return mqttAndroidClient.isConnected
+    }
+
+    fun disconnect() {
+        mqttAndroidClient.disconnect()
     }
 
     fun destroy() {

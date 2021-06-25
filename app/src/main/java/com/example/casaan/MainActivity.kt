@@ -44,12 +44,19 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
 
+        this.supportActionBar?.hide()
+
         setMqttCallBack()
         mqttClient.connect()
     }
 
     fun getIntance() {
         return this.getIntance()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mqttClient.disconnect()
     }
 
     override fun onResume() {
@@ -67,14 +74,13 @@ class MainActivity : AppCompatActivity() {
                 mqttClient.subscribe("home/scene/garden")
                 mqttClient.subscribe("home/ESP_SMARTMETER/electricity/watt")
                 mqttClient.subscribe("home/ESP_GROWATT/grid/watt")
-                mqttClient.subscribe("home/ESP_SDM120/power")
-                mqttClient.subscribe("home/SONOFF_AIRCO/power")
-                mqttClient.subscribe("home/SONOFF_TV/power")
+                mqttClient.subscribe("home/+/power")
+                mqttClient.subscribe("home/ESP_BBQ/temperature/+")
+
             }
 
-            override fun connectionLost(throwable: Throwable) {
-                val snackbarMsg = "Connection to host lost:\n'$MQTT_MQTT_HOST'"
-                android.util.Log.w("Debug", snackbarMsg)
+            override fun connectionLost(throwable: Throwable?) {
+                android.util.Log.w("Debug", "Connection to host lost:\n'$MQTT_MQTT_HOST'")
             }
 
             @Throws(Exception::class)

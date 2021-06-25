@@ -34,7 +34,6 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
 
-
         val buttonTV = root.findViewById(R.id.buttonTV) as Button
         buttonTV.setOnClickListener() {
             mqttClient.publish("home/setscene/livingroom", "tvonly")
