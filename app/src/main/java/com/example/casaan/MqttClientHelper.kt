@@ -5,6 +5,7 @@ package com.example.casaan
 
 import android.content.Context
 import android.util.Log
+import com.example.casaan.ui.dashboard.MqttItem
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.*
 
@@ -28,6 +29,7 @@ class MqttClientHelper(context: Context?) {
     val serverUri = MQTT_MQTT_HOST
     private val clientId: String = MqttClient.generateClientId()
 
+    var subscribedTopics = mutableListOf<String>()
 
     fun setCallback(callback: MqttCallbackExtended?) {
         mqttAndroidClient.setCallback(callback)
@@ -58,7 +60,7 @@ class MqttClientHelper(context: Context?) {
         connect()
     }
 
-    public fun connect() {
+    fun connect() {
         if (this.isConnected()) return
 
         val mqttConnectOptions = MqttConnectOptions()
@@ -79,6 +81,11 @@ class MqttClientHelper(context: Context?) {
                     disconnectedBufferOptions.isDeleteOldestMessages = false
                     mqttAndroidClient.setBufferOpts(disconnectedBufferOptions)
                     Log.w(TAG, "Mqtt Connected")
+
+                    for (topic in subscribedTopics)
+                    {
+                        subscribe(topic)
+                    }
                 }
 
                 override fun onFailure(
@@ -95,6 +102,7 @@ class MqttClientHelper(context: Context?) {
 
     fun subscribe(subscriptionTopic: String, qos: Int = 0) {
         try {
+            subscribedTopics.add(subscriptionTopic)
             if (!this.isConnected()) this.connect()
             if (!this.isConnected()) return
 

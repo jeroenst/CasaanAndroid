@@ -72,11 +72,6 @@ class MainActivity : AppCompatActivity() {
 
                 mqttClient.subscribe("home/scene/livingroom")
                 mqttClient.subscribe("home/scene/garden")
-                mqttClient.subscribe("home/ESP_SMARTMETER/electricity/watt")
-                mqttClient.subscribe("home/ESP_GROWATT/grid/watt")
-                mqttClient.subscribe("home/+/power")
-                mqttClient.subscribe("home/ESP_BBQ/temperature/+")
-
             }
 
             override fun connectionLost(throwable: Throwable?) {
@@ -93,8 +88,8 @@ class MainActivity : AppCompatActivity() {
                 mqttmap[topic] = mqttMessage.toString()
 
                 try {
-                    var navHomeFragment = supportFragmentManager.primaryNavigationFragment
-                    var navFragment = navHomeFragment?.childFragmentManager?.fragments?.get(0)
+                    val navHomeFragment = supportFragmentManager.primaryNavigationFragment
+                    val navFragment = navHomeFragment?.childFragmentManager?.fragments?.get(0)
                     if (navFragment is DashboardFragment) {
                         navFragment.mqttupdate(topic)
                     }
