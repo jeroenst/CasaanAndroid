@@ -1,26 +1,21 @@
 package com.example.casaan.ui.dashboard
 
-import android.graphics.Paint
 import android.graphics.Typeface
-import android.icu.text.AlphabeticIndex
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebSettings
-import android.widget.ProgressBar
 import android.widget.TableLayout
+import android.widget.TableRow
 import android.widget.TextView
-import androidx.core.view.marginStart
-import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.casaan.R
 import com.example.casaan.databinding.FragmentDashboardBinding
 import kotlin.math.pow
 import kotlin.math.roundToInt
+
 
 class MqttItem(
     var label: String,
@@ -113,36 +108,53 @@ class DashboardFragment : Fragment() {
 
         val table = root.findViewById<TableLayout>(R.id.tableLayout)
         for (mqttItem in this.mqttItems.items) {
-            val row = android.widget.TableRow(context)
+            val row = TableRow(context)
+//            row.setBackgroundColor(0xFF888888.toInt())
             val textView1 = TextView(context)
             val textView2 = TextView(context)
 
             var rowtopmargin = 0
 
+            val density = requireContext().resources.displayMetrics.widthPixels / 100
+
+
             textView1.text = mqttItem?.label
-            textView1.width = 600
-            textView2.width = 300
             if (mqttItem.topic == "")
             {
+                textView1.width = 0
+                textView2.width = 0
                 rowtopmargin = 20
-                textView2.text = ""
-                textView1.textSize = 18f
+
+                textView1.textSize = 22f
                 textView1.setTypeface(null, Typeface.BOLD)
+                textView1.gravity = (Gravity.CENTER_VERTICAL or Gravity.CENTER_HORIZONTAL)
+                row.addView(textView1)
+                val param = textView1.layoutParams as ViewGroup.MarginLayoutParams
+                param.setMargins(0,0,0,0)
+
+                val the_param: TableRow.LayoutParams = textView1.getLayoutParams() as TableRow.LayoutParams
+                the_param.span = 2
+                textView1.layoutParams = the_param
             }
-            else textView2.text = ("-" + " " + mqttItem?.unit)
-            textView2.tag = mqttItem?.topic
-            textView2.gravity = Gravity.END
-
-
-            row.addView(textView1)
-            row.addView(textView2)
-
-            val param = textView2.layoutParams as ViewGroup.MarginLayoutParams
-            param.setMargins(10,0,0,0)
+            else
+            {
+                textView1.width = (60 * density)
+                textView2.width = (20 * density)
+                textView1.textSize = 16f
+                textView2.textSize = 16f
+                textView2.text = ("-" + " " + mqttItem?.unit)
+                textView2.tag = mqttItem?.topic
+                textView2.gravity = Gravity.END
+                row.addView(textView1)
+                row.addView(textView2)
+                val param = textView2.layoutParams as ViewGroup.MarginLayoutParams
+                param.setMargins(10,0,0,0)
+            }
 
             table.addView(row)
             val paramrow = row.layoutParams as ViewGroup.MarginLayoutParams
             paramrow.setMargins(0, rowtopmargin,0,0)
+
         }
 
 
@@ -193,22 +205,6 @@ class DashboardFragment : Fragment() {
     }
 
     fun fillTextView(
-        textViewId: Int,
-        value: String?,
-        decimals: Int,
-        min: Double,
-        max: Double,
-        inverse: Boolean = false,
-        unit: String = "",
-        lastwillvalue: String?
-    ) {
-        val root: View = binding.root
-        val textView = root.findViewById<TextView>(textViewId)
-        textView?.text = (numberFormat(value, decimals) + unit)
-        textView?.setTextColor(valueToColor(value, min, max, decimals, inverse))
-    }
-
-    fun fillTextView(
         textView: TextView?,
         value: String?,
         decimals: Int,
@@ -218,13 +214,18 @@ class DashboardFragment : Fragment() {
         unit: String = "",
         lastwillvalue: String?
     ) {
+
+        val colorStateList = textView!!.textColors
+
         if ((lastwillvalue?.lowercase() == "offline") || (lastwillvalue == null)){
             textView?.text = ("offline")
+            textView?.setTextColor(colorStateList.defaultColor)
         }
         else {
             if (value == null)
             {
                 textView?.text = ("offline")
+                textView?.setTextColor(colorStateList.defaultColor)
             }
             else {
                 textView?.text = (numberFormat(value ?: "-", decimals) + " " + unit)

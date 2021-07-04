@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        mqttClient.disconnect()
+        if (mqttClient.isConnected()) mqttClient.disconnect()
     }
 
     override fun onResume() {
@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() {
 
                 mqttClient.subscribe("home/scene/livingroom")
                 mqttClient.subscribe("home/scene/garden")
+
             }
 
             override fun connectionLost(throwable: Throwable?) {

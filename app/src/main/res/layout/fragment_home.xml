@@ -1,133 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <Button
-        android:id="@+id/buttonEvening"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="Avond"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonTV" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/buttonTV"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="TV"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewHuiskamer" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="8dp"
+            android:paddingBottom="16dp">
 
-    <Button
-        android:id="@+id/buttonDinner"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="Eten"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonEvening" />
+            <TextView
+                android:id="@+id/textViewHuiskamer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Huiskamer"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/buttonOff"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="Uit"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonBright" />
+            <Button
+                android:id="@+id/buttonTV"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="TV"
+                android:textSize="10sp" />
 
-    <Button
-        android:id="@+id/buttonBright"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="Fel"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonDinner" />
+            <Button
+                android:id="@+id/buttonEvening"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Avond"
+                android:textSize="10sp" />
 
-    <Button
-        android:id="@+id/buttonGardenOn"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="Aan"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewTuin" />
+            <Button
+                android:id="@+id/buttonDinner"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Eten"
+                android:textSize="10sp" />
 
-    <Button
-        android:id="@+id/buttonGardenFence"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="Schutting"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonGardenOn" />
+            <Button
+                android:id="@+id/buttonBright"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Fel"
+                android:textSize="10sp" />
 
-    <Button
-        android:id="@+id/buttonGardenOff"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="Uit"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonGardenFence" />
+            <Button
+                android:id="@+id/buttonOff"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Uit"
+                android:textSize="10sp" />
 
-    <Button
-        android:id="@+id/buttonAllOff"
-        android:layout_width="200dp"
-        android:layout_height="40dp"
-        android:text="Alles Uit"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewAlles" />
+            <TextView
+                android:id="@+id/textViewTuin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:text="Tuin"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textViewTuin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Tuin"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonOff" />
+            <Button
+                android:id="@+id/buttonGardenOn"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Aan"
+                android:textSize="10sp" />
 
-    <TextView
-        android:id="@+id/textViewAlles"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Alles"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGardenOff" />
+            <Button
+                android:id="@+id/buttonGardenFence"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Schutting"
+                android:textSize="10sp" />
 
-    <TextView
-        android:id="@+id/textViewHuiskamer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Huiskamer"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/buttonGardenOff"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Uit"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/textViewAlles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:text="Alles"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonAllOff"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Alles Uit"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

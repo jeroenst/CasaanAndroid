@@ -84,7 +84,7 @@ class MqttClientHelper(context: Context?) {
 
                     for (topic in subscribedTopics)
                     {
-                        subscribe(topic)
+                       if ((topic !== "") && (topic !== null)) subscribe(topic)
                     }
                 }
 
@@ -102,7 +102,7 @@ class MqttClientHelper(context: Context?) {
 
     fun subscribe(subscriptionTopic: String, qos: Int = 0) {
         try {
-            subscribedTopics.add(subscriptionTopic)
+            if (subscriptionTopic !in subscribedTopics) subscribedTopics.add(subscriptionTopic)
             if (!this.isConnected()) this.connect()
             if (!this.isConnected()) return
 
@@ -150,7 +150,7 @@ class MqttClientHelper(context: Context?) {
     }
 
     fun disconnect() {
-        mqttAndroidClient.disconnect()
+        if (mqttAndroidClient.isConnected) mqttAndroidClient.disconnect()
     }
 
     fun destroy() {
