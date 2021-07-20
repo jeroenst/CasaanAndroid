@@ -1,3 +1,3 @@
 # CasaanAndroid
 
-This is a app I use to control my MQTT devices
+This is an app I use to control my MQTT devices
